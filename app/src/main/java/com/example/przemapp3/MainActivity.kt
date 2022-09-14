@@ -11,11 +11,32 @@ import kotlin.math.abs
 
 class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
 
-    private fun loadFragment(containerView: Int = R.id.fragmentContainerView, fragment: Fragment){
-        supportFragmentManager
-            .beginTransaction()
-            .replace(containerView, fragment)
-            .commitNow()
+    private fun loadFragment(containerView: Int = R.id.fragmentContainerView, fragment: Fragment, direction: String = "left"){
+        if(direction=="right"){
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(
+
+                    R.anim.left_to_right,
+                    R.anim.left_to_right2,
+                    0,
+                    0
+                )
+                .replace(containerView, fragment)
+                .commitNow()
+        }else{
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(
+
+                    R.anim.right_to_left,
+                    R.anim.right_to_left2,
+                    0,
+                    0
+                )
+                .replace(containerView, fragment)
+                .commitNow()
+        }
     }
 
     var x1 = 0.0f
@@ -96,10 +117,10 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
                             .findFragmentById(R.id.fragmentContainerView)
                             .toString()
                             .substringBefore('{')) {
-                            null -> loadFragment(R.id.fragmentContainerView, BlankFragment())
-                            "BlankFragment" -> loadFragment(R.id.fragmentContainerView, BlankFragment2())
-                            "BlankFragment2" -> loadFragment(R.id.fragmentContainerView, BlankFragment3())
-                            "BlankFragment3" -> loadFragment(R.id.fragmentContainerView, BlankFragment())
+                            null -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
+                            "BlankFragment" -> loadFragment(R.id.fragmentContainerView, BlankFragment2(), "right")
+                            "BlankFragment2" -> loadFragment(R.id.fragmentContainerView, BlankFragment3(), "right")
+                            "BlankFragment3" -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
                         }
                     } else {
                         Toast.makeText(this, supportFragmentManager.findFragmentById(R.id.fragmentContainerView).toString().substringBefore('{'), Toast.LENGTH_SHORT).show()
