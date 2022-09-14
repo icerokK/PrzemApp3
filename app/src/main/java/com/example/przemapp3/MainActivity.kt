@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
             supportFragmentManager
                 .beginTransaction()
                 .setCustomAnimations(
-
                     R.anim.left_to_right,
                     R.anim.left_to_right2,
                     0,
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
             supportFragmentManager
                 .beginTransaction()
                 .setCustomAnimations(
-
                     R.anim.right_to_left,
                     R.anim.right_to_left2,
                     0,
@@ -112,20 +110,37 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
 
                 if (abs(valueX) > MIN_DISTANCE){
                     if (x2>x1){
-                        Toast.makeText(this, supportFragmentManager.findFragmentById(R.id.fragmentContainerView).toString().substringBefore('{'), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,
+                            supportFragmentManager
+                                .findFragmentById(R.id.fragmentContainerView)
+                                .toString()
+                                .substringBefore('{'),
+                            Toast.LENGTH_SHORT)
+                            .show()
+
                         when(supportFragmentManager
                             .findFragmentById(R.id.fragmentContainerView)
                             .toString()
                             .substringBefore('{')) {
-                            null -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
-                            "BlankFragment" -> loadFragment(R.id.fragmentContainerView, BlankFragment2(), "right")
-                            "BlankFragment2" -> loadFragment(R.id.fragmentContainerView, BlankFragment3(), "right")
-                            "BlankFragment3" -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
+                                null -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
+                                "BlankFragment" -> loadFragment(R.id.fragmentContainerView, BlankFragment2(), "right")
+                                "BlankFragment2" -> loadFragment(R.id.fragmentContainerView, BlankFragment3(), "right")
+                                "BlankFragment3" -> loadFragment(R.id.fragmentContainerView, BlankFragment(), "right")
                         }
                     } else {
-                        Toast.makeText(this, supportFragmentManager.findFragmentById(R.id.fragmentContainerView).toString().substringBefore('{'), Toast.LENGTH_SHORT).show()
-//                        when(supportFragmentManager.findFragmentById(R.id.fragmentContainerView).toString().substringBefore('{'))
-                        when(supportFragmentManager.findFragmentById(R.id.fragmentContainerView).toString().substringBefore('{'))
+                        Toast.makeText(this,
+                            supportFragmentManager
+                                .findFragmentById(R.id.fragmentContainerView)
+                                .toString()
+                                .substringBefore('{'),
+                            Toast.LENGTH_SHORT)
+                            .show()
+
+                        when(supportFragmentManager
+                            .findFragmentById(R.id.fragmentContainerView)
+                            .toString()
+                            .substringBefore('{')
+                        )
                         {
                             null -> loadFragment(R.id.fragmentContainerView, BlankFragment3())
                             "BlankFragment" -> loadFragment(R.id.fragmentContainerView, BlankFragment3())
